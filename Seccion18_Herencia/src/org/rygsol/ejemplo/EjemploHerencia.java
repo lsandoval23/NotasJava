@@ -7,6 +7,7 @@ import org.rygsol.pooherencia.Profesor;
 public class EjemploHerencia {
     public static void main(String[] args) {
 
+        System.out.println("====== Creando la instancia de la clase Alumno =======");
         Alumno alumno = new Alumno();
         alumno.setNombre("Andres");
         alumno.setApellido("Guzman");
@@ -15,6 +16,9 @@ public class EjemploHerencia {
         alumno.setNotaHistoria(6.3);
         alumno.setNotaMatematica(4.9);
 
+
+
+        System.out.println("====== Creando la instancia de la clase Alumno Internacional =======");
         AlumnoInternacional alumnoInt = new AlumnoInternacional();
         alumnoInt.setNombre("Peter");
         alumnoInt.setApellido("Gosling");
@@ -27,11 +31,14 @@ public class EjemploHerencia {
         alumnoInt.setNotaMatematica(6.5);
 
 
-        
+        System.out.println("====== Creando la instancia de la clase Profesor =======");
         Profesor profesor = new Profesor();
         profesor.setNombre("Luci");
         profesor.setApellido("Perez");
         profesor.setAsignatura("Matematicas");
+
+
+        System.out.println("======  =======");
 
         System.out.println(alumno.getNombre() + " " + alumno.getApellido());
         System.out.println("Profesor: " + profesor.getNombre() + " " + profesor.getApellido());

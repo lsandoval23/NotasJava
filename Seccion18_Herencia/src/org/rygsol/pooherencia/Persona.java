@@ -8,6 +8,11 @@ public class Persona {
     private String email;
 
 
+    public Persona(){
+        System.out.println("Persona: Inicializando constructor");
+    }
+
+
 
     public String getNombre() {
         return nombre;
