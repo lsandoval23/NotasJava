@@ -12,6 +12,28 @@ public class Alumno extends Persona{
         System.out.println("Alumno: Inicializando constructor");
     }
 
+    // Usamos la palabra reservada super, para poder usar el constructor de la clase padre
+    // Asi podemos obtener acceso a los atributos de la clase padre, a pesar que sean private
+    public Alumno(String nombre, String apellido) {
+        super(nombre, apellido);
+    }
+
+    public Alumno(String nombre, String apellido, int edad) {
+        super(nombre, apellido, edad);
+    }
+
+    public Alumno(String nombre, String apellido, int edad, String institucion) {
+        super(nombre, apellido, edad); // o this(nombre, apellido, edad)
+        this.institucion = institucion;
+    }
+
+    public Alumno(String nombre, String apellido, int edad, String institucion, double notaMatematica, double notaCastellano, double notaHistoria) {
+        super(nombre, apellido, edad);
+        this.institucion = institucion;
+        this.notaMatematica = notaMatematica;
+        this.notaCastellano = notaCastellano;
+        this.notaHistoria = notaHistoria;
+    }
 
     public String getInstitucion() {
         return institucion;

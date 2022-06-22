@@ -1,19 +1,28 @@
 package org.rygsol.pooherencia;
 
 public class AlumnoInternacional extends  Alumno {
-    private String Pais;
+    private String pais;
     private double notaIdiomas;
 
     public AlumnoInternacional() {
         System.out.println("Alumno Internacional: inicializando constructor ...");
     }
 
+    public AlumnoInternacional(String nombre, String apellido) {
+        super(nombre, apellido);
+    }
+
+    public AlumnoInternacional(String nombre, String apellido, String pais) {
+        super(nombre, apellido);
+        this.pais = pais;
+    }
+
     public String getPais() {
-        return Pais;
+        return pais;
     }
 
     public void setPais(String pais) {
-        Pais = pais;
+        this.pais = pais;
     }
 
     public double getNotaIdiomas() {
