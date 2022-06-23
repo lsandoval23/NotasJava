@@ -66,4 +66,17 @@ public class Alumno extends Persona{
     public void setNotaHistoria(double notaHistoria) {
         this.notaHistoria = notaHistoria;
     }
+
+    @Override
+    public String saludar() {
+        // Se puede usar el metodo del padre para concatenar con el del hijo
+        String saludo = super.saludar();
+        return saludo + " soy un alumno y mi nombre es " + this.getNombre();
+    }
+
+    public double calcularPromedio(){
+        System.out.println("calcularPromedio: " + this.getClass().getCanonicalName());
+        return (notaHistoria + notaCastellano + notaMatematica)/3;
+    }
+
 }

@@ -62,6 +62,13 @@ public class EjemploHerenciaConstructores {
                 System.out.println("Nota Idiomas: " + ((AlumnoInternacional) persona).getNotaIdiomas());
                 System.out.println("Pais: " + ((AlumnoInternacional) persona).getPais());
             }
+
+            System.out.println(" ======= sobre escritura promedio =======");
+            // A pesar de que se usa la clase alumno, si un objeto de la clase alumno internacional llama
+            // al metodo calcularPromedio llamara a su propio metodo
+            System.out.println("Promedio " + ((Alumno) persona).calcularPromedio());
+            System.out.println(" ======= sobre escritura promedio =======");
+
         }
 
         if(persona instanceof Profesor){
@@ -69,6 +76,10 @@ public class EjemploHerenciaConstructores {
             System.out.println("Asignatura: " + ((Profesor) persona).getAsignatura());
 
         }
+
+        System.out.println("===== sobre escritura saludar =====");
+
+        System.out.println(persona.saludar());
 
         System.out.println("===== - =====");
     }

@@ -26,4 +26,10 @@ public class Profesor extends Persona{
     public void setAsignatura(String asignatura) {
         this.asignatura = asignatura;
     }
+
+    @Override
+    public String saludar() {
+        return "Buenos dias soy el profesor de " + this.getAsignatura() +
+                " y mi nombre es: "+ this.getNombre();
+    }
 }
