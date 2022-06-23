@@ -75,8 +75,17 @@ public class Alumno extends Persona{
     }
 
     public double calcularPromedio(){
-        System.out.println("calcularPromedio: " + this.getClass().getCanonicalName());
+        // Se reemplaza this por la funcion estatica de la clase, para observar que se recorre la clases padre
+        System.out.println("calcularPromedio: " + Alumno.class.getCanonicalName());
         return (notaHistoria + notaCastellano + notaMatematica)/3;
     }
 
+    @Override
+    public String toString() {
+        return  super.toString() + "\n institucion='" + institucion + '\'' +
+                ", notaMatematica=" + notaMatematica +
+                ", notaCastellano=" + notaCastellano +
+                ", notaHistoria=" + notaHistoria +
+                '}';
+    }
 }
