@@ -1,6 +1,6 @@
 package org.rygsol.pooherencia;
 
-public class AlumnoInternacional extends  Alumno {
+public final class AlumnoInternacional extends  Alumno {
     private String pais;
     private double notaIdiomas;
 
@@ -45,7 +45,7 @@ public class AlumnoInternacional extends  Alumno {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return  super.toString() + "\npais='" + pais + '\'' +
                 ", notaIdiomas=" + notaIdiomas +
                 '}';
