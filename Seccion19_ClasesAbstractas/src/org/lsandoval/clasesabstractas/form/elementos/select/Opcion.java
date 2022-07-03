@@ -37,6 +37,11 @@ public class Opcion {
         this.selected = selected;
     }
 
+    public Opcion setSelected(){
+        this.selected = true;
+        return this;
+    }
+
     public boolean isSelected() {
         return selected;
     }
