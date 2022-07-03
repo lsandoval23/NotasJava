@@ -41,13 +41,19 @@ abstract public class ElementoForm {
         this.valor = valor;
     }
 
+    /*
+    public String getNombre() {
+        return nombre;
+    }
+    */
+
     // Metodos abstractos requieren clases abstractas
     abstract public String dibujarHtml();
 
     public boolean esValido(){
         for (Validador v: validadores){
             if (!v.esValido(this.valor)){
-                this.errores.add(v.getMensaje());
+                this.errores.add(String.format(v.getMensaje(), this.nombre));
             }
         }
 

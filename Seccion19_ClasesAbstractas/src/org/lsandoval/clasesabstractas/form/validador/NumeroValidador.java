@@ -2,7 +2,7 @@ package org.lsandoval.clasesabstractas.form.validador;
 
 public class NumeroValidador extends Validador{
 
-    protected  String mensaje = "el campo debe ser un numero";
+    protected  String mensaje = "el campo %s debe ser un numero";
 
     @Override
     void setMensaje(String mensaje) {

@@ -1,7 +1,7 @@
 package org.lsandoval.clasesabstractas.form.validador;
 
 public class RequeridoValidador extends Validador{
-    protected String mensaje = "el campo es requerido";
+    protected String mensaje = "el campo %s es requerido";
 
     @Override
     void setMensaje(String mensaje) {
