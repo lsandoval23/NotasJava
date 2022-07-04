@@ -24,6 +24,7 @@ public class EjemploImprenta {
         imprimir(cv);
         imprimir(informe);
         imprimir(libro);
+        System.out.println(libro.imprimirSaludo());
 
 
 
