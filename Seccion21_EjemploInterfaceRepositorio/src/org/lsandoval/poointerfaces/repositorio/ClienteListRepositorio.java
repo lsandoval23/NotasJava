@@ -31,7 +31,7 @@ public class ClienteListRepositorio implements CrudRepositorio, PaginableReposit
     public Cliente porId(Integer id) {
         Cliente resultado = null;
         for(Cliente cli: datasource){
-            if(cli.getId().equals(id)){
+            if( cli.getId() != null && cli.getId().equals(id)){
                 resultado = cli;
                 break;
             }
@@ -72,20 +72,20 @@ public class ClienteListRepositorio implements CrudRepositorio, PaginableReposit
             int resultado = 0;
             if (dir == Direccion.ASC){
                 switch (campo){
-                    case "id":
+                    case "id" ->
                         resultado = a.getId().compareTo(b.getId());
-                    case "nombre":
+                    case "nombre" ->
                         resultado = a.getNombre().compareTo(b.getNombre());
-                    case "apellido":
+                    case "apellido" ->
                         resultado = a.getApellido().compareTo(b.getApellido());
                 }
             } else if (dir == Direccion.DESC){
                 switch (campo){
-                    case "id":
+                    case "id" ->
                         resultado = b.getId().compareTo(a.getId());
-                    case "nombre":
+                    case "nombre" ->
                         resultado = b.getNombre().compareTo(a.getNombre());
-                    case "apellido":
+                    case "apellido" ->
                         resultado = b.getApellido().compareTo(a.getApellido());
                 }
             }

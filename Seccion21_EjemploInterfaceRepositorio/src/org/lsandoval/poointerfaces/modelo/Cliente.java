@@ -61,4 +61,9 @@ public class Cliente {
         Cliente cliente = (Cliente) o;
         return Objects.equals(id, cliente.id);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
