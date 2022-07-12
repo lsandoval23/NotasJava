@@ -10,7 +10,9 @@ import java.util.List;
 // repositorio da la mayoria de
 // caracteristicas de sql, si se quiere algo más especifico se usa un implementation
 
-public class ClienteListRepositorio implements CrudRepositorio, PaginableRepositorio, OrdenableRepositorio{
+
+// Ahora ClienteListRepositorio implementa una sola interfaz que hereda sus metodos de las demas interfaces
+public class ClienteListRepositorio implements OrdenablePaginableCrudRepositorio{
 
 
     // Atributo

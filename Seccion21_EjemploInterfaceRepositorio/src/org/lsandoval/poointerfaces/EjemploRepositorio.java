@@ -37,7 +37,7 @@ public class EjemploRepositorio {
         System.out.println(bea);
 
         System.out.println("=========== eliminar ==============");
-        //repo.eliminar(2);
+        repo.eliminar(2);
         repo.listar().forEach(System.out::println);     // Luego de ordenable, cuando se lista, se mantiene el orden original.
 
     }
