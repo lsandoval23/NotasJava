@@ -21,12 +21,12 @@ public class EjemploRepositorio {
 
         System.out.println("=========== paginable ==============");
 
-        List<Cliente> paginable = repo.listar(0, 3);
+        List<Cliente> paginable = repo.listar(1, 3);
         paginable.forEach(c -> System.out.println(c));
 
         System.out.println("=========== ordenable ==============");
 
-        List<Cliente> ordenable = repo.listar("apellido", Direccion.ASC);
+        List<Cliente> ordenable = repo.listar("nombre", Direccion.DESC);
         ordenable.forEach(c -> System.out.println(c));
 
         System.out.println("=========== editar ==============");
@@ -37,8 +37,8 @@ public class EjemploRepositorio {
         System.out.println(bea);
 
         System.out.println("=========== eliminar ==============");
-        repo.eliminar(2);
-        repo.listar().forEach(System.out::println);
+        //repo.eliminar(2);
+        repo.listar().forEach(System.out::println);     // Luego de ordenable, cuando se lista, se mantiene el orden original.
 
     }
 }

@@ -68,7 +68,61 @@ public class ClienteListRepositorio implements CrudRepositorio, PaginableReposit
     //Ordenable
     @Override
     public List<Cliente> listar(String campo, Direccion dir) {
-        datasource.sort((a,b) -> {
+        // Cuando se ordena, no se tiene que modificar el datasource. Por eso se crea una copia del datasource sobre el que
+        // se haran los cambios
+        List<Cliente> listaOrdenada= new ArrayList<>(this.datasource);
+
+        // Metodos de implementacion optimizados
+
+        // 1. Implementando un metodo ordenar para reutilizar el switch en la clase anonima Comparator
+
+        /*
+        listaOrdenada.sort(new Comparator<Cliente>() {
+            @Override
+            public int compare(Cliente a, Cliente b) {
+                int resultado = 0;
+                if (dir == Direccion.ASC){
+                   resultado = this.ordenar(a,b);
+                } else if (dir == Direccion.DESC){
+                    resultado = this.ordenar(b,a);
+                }
+                return resultado;
+            }
+
+            private int ordenar(Cliente a, Cliente b) {
+
+                int resultado = 0;
+                switch (campo){
+                    case "id" ->
+                            resultado = a.getId().compareTo(b.getId());
+                    case "nombre" ->
+                            resultado = a.getNombre().compareTo(b.getNombre());
+                    case "apellido" ->
+                            resultado = a.getApellido().compareTo(b.getApellido());
+                }
+                return  resultado;
+            }
+        });
+
+         */
+
+
+        // 2. Con una expression lambda y un metodo de la clase o implementado dentro de la interfaz ordenable
+        listaOrdenada.sort((a,b) -> {
+            int resultado = 0;
+            if (dir == Direccion.ASC){
+                resultado = ordenar(campo, a,b);
+            } else if (dir == Direccion.DESC){
+                resultado = ordenar(campo, b,a);
+            }
+            return resultado;
+        });
+
+
+        // Metodo Original
+
+        /*
+        listaOrdenada.sort((a,b) -> {
             int resultado = 0;
             if (dir == Direccion.ASC){
                 switch (campo){
@@ -90,8 +144,29 @@ public class ClienteListRepositorio implements CrudRepositorio, PaginableReposit
                 }
             }
             return resultado;
-        });
+        }); */
 
-        return datasource;
+        return listaOrdenada;
     }
+
+
+    // Metodo de la clase usado para el caso 2 de la implementacion de ordenable.
+
+    // 1. El metodo puede estar como un metodo estatico dentro de la clase que implementa a la interfaz, o
+    // dentro de la interfaz
+
+    /*
+    private static int ordenar(String campo, Cliente a, Cliente b) {
+
+        int resultado = 0;
+        switch (campo) {
+            case "id" -> resultado = a.getId().compareTo(b.getId());
+            case "nombre" -> resultado = a.getNombre().compareTo(b.getNombre());
+            case "apellido" -> resultado = a.getApellido().compareTo(b.getApellido());
+        }
+        return resultado;
+    }
+
+     */
+
 }
