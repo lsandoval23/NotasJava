@@ -1,6 +1,7 @@
 package org.lsandoval.generics;
 
 import org.lsandoval.poointerfaces.modelo.Cliente;
+import org.lsandoval.poointerfaces.modelo.ClientePremium;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +43,11 @@ public class EjemploGenericos {
         List<String> nombres = fromArrayToList(new String[]{"Andres", "Luis", "Luci", "Bea", "John"}, enterosArray);
         nombres.forEach(System.out::println);
 
+        // El metodo fromArrayToList hace el llamado al que tiene la restriccion <T extends Cliente & Comparable<T>>
+        // y la nueva clase ClientePremium cumple estas condiciones
+        List<ClientePremium> clientePremiumList = fromArrayToList(
+                new ClientePremium[]{new ClientePremium("Paco", "Fernandez")});
+
 
 
 
@@ -60,6 +66,19 @@ public class EjemploGenericos {
     public static <T> List<T> fromArrayToList(T[] c){
         return Arrays.asList(c);
     }
+
+    // Bounded Generics, permite restringir que tipo de clase se puede usar en los argumentos genericos
+    // En este caso, limitamos como parametros a todas las clases hijas de Number.
+
+    public static <T extends Number> List<T> fromArrayToList(T[] c){
+        return Arrays.asList(c);
+    }
+
+    // Se restringen como argumento generico a aquellas clases que hereden de cliente e implementen la interfaz Comparable
+    public static <T extends Cliente & Comparable<T>> List<T> fromArrayToList(T[] c){
+        return Arrays.asList(c);
+    }
+
 
     // Otra funcion generica que acepta dos parametros genericos, transforma en lista a un array y el otro lo imprime
     public static <T, G> List<T> fromArrayToList(T[] c, G[] g){
