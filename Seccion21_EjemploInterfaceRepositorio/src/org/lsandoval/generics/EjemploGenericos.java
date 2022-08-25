@@ -49,7 +49,20 @@ public class EjemploGenericos {
                 new ClientePremium[]{new ClientePremium("Paco", "Fernandez")});
 
 
+        System.out.println("============ Uso de Wildcart ================");
 
+        imprimirClientes(clientes);
+        imprimirClientes(clienteList);
+        imprimirClientes(clientePremiumList);
+        imprimirLista(clientePremiumList);
+
+        System.out.println("============ Maximo de tres objetos usando genericos ===========");
+
+        // Las clases wrapper Integer, Double y String implementan a la interfaz Comparable dentro de su implementacion
+        System.out.println("Maximo de 1, 9 y 4 es: " + maximo(1, 9, 4));
+        System.out.println("Maximo de 3.9, 11.6, 7.78 es: " + maximo(3.9, 11.6, 7.78));
+        System.out.println("Maximo de zanahora, arandanos, manzana es: "
+                + maximo("zanahora", "arandano", "manzana"));
 
     }
 
@@ -87,6 +100,43 @@ public class EjemploGenericos {
         }
         return Arrays.asList(c);
     }
+
+    // Wildcart o comodin, permite que se pueda imprimir una lista de clientes o cualquier clase subyacente restringiendo
+    // el metodo para listas de cierto tipo.
+
+    /*
+    *   public static void imprimirClientes(List<Cliente> clientes)
+    *
+    *   En este caso, si quisiera imprimir la lista de clientes premium no lo permitiria, ya que la lista de clientes
+    *   no se relaciona con una lista de clientes premium
+    *
+    * */
+    public static void imprimirClientes(List<? extends Cliente> clientes){
+        clientes.forEach(System.out::println);
+    }
+
+    // En este caso, observamos que el wildcart solo, nos permite imprimir cualquier Lista.
+    public static void imprimirLista(List<?> list){
+        list.forEach(System.out::println);
+    }
+
+    // El metodo generico permite comparar 3 objetos de clases que implementen la interfaz comparable (Observar que
+    // extends aplica para interfaces y clases en los parámetros genéricos) y calcula el mayor.
+    // Para strings,
+    public static <T extends Comparable<T>> T maximo(T a, T b, T c){
+        T max = a;
+        if (b.compareTo(max) > 0){
+            max = b;
+        }
+
+        if (c.compareTo(max) > 0){
+            max = c;
+        }
+        return max;
+    }
+
+
+
 
 
 
