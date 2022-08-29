@@ -5,12 +5,13 @@ import org.lsandoval.poointerfaces.modelo.Cliente;
 import java.util.List;
 
 
-public interface CrudRepositorio {
+// Se implementa un argumento generico que permite aceptar clases aparte de clientes.
+public interface CrudRepositorio<T> {
 
-    List<Cliente> listar();         // Listar todos los elementos
-    Cliente porId(Integer id);      // Obtener un cliente por su id
-    void crear(Cliente cliente);    // Insert into
-    void editar(Cliente cliente);   // UPDATE
+    List<T> listar();         // Listar todos los elementos
+    T porId(Integer id);      // Obtener un cliente por su id
+    void crear(T object);    // Insert into
+    void editar(T object);   // UPDATE
     void eliminar(Integer id);      // DELETE
 
 }

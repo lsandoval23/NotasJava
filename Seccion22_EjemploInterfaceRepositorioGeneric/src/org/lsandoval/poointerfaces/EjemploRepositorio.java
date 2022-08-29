@@ -1,7 +1,8 @@
 package org.lsandoval.poointerfaces;
 
 import org.lsandoval.poointerfaces.modelo.Cliente;
-import org.lsandoval.poointerfaces.repositorio.ClienteListRepositorio;
+import org.lsandoval.poointerfaces.repositorio.OrdenablePaginableCrudRepositorio;
+import org.lsandoval.poointerfaces.repositorio.lista.ClienteListRepositorio;
 import org.lsandoval.poointerfaces.repositorio.Direccion;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 public class EjemploRepositorio {
     public static void main(String[] args) {
 
-        ClienteListRepositorio repo = new ClienteListRepositorio();
+        OrdenablePaginableCrudRepositorio<Cliente> repo = new ClienteListRepositorio();
         repo.crear(new Cliente("Jano", "Perez"));
         repo.crear(new Cliente("Bea", "Gonzales"));
         repo.crear(new Cliente("Luci", "Martinez"));
@@ -38,6 +39,7 @@ public class EjemploRepositorio {
         System.out.println("=========== eliminar ==============");
         repo.eliminar(2);
         repo.listar().forEach(System.out::println);     // Luego de ordenable, cuando se lista, se mantiene el orden original.
-
+        System.out.println("===== total ===== ");
+        System.out.println("Total registros: " + repo.total());
     }
 }

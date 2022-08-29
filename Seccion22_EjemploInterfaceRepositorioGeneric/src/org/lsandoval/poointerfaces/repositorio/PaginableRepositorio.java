@@ -4,8 +4,8 @@ import org.lsandoval.poointerfaces.modelo.Cliente;
 
 import java.util.List;
 
-public interface PaginableRepositorio {
+public interface PaginableRepositorio<T> {
 
-    List<Cliente> listar(int desde, int hasta);     // Seleccion usando un rango de id's
+    List<T> listar(int desde, int hasta);     // Seleccion usando un rango de id's
 
 }
