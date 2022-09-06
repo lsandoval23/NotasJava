@@ -5,32 +5,22 @@ import javax.swing.*;
 public class EjemploExcepciones {
     public static void main(String[] args) {
 
-        String valor = JOptionPane.showInputDialog("Ingrese un valor: ");
+        Calculadora cal = new Calculadora();
+        String numerador = JOptionPane.showInputDialog("Ingrese el numerador: ");
+        String denominador = JOptionPane.showInputDialog("Ingrese el denominador");
 
-        // Aquellas sentencias que puedan generar una excepcion, y no se encuentren dentro del bloque try
-        // interrumpen el flujo del programa. Si se encuentran dentro del bloque try podemos implementar
-        // alternativas para que no se detenga el programa.
-
-        // Ambos tipos de excepciones (NumberFormatException, ArithmeticException) son hijas de la clase RuntimeException
-        // y son excepciones no chequeadas, estas son ignoradas en tiempo de compilacion y aparecen en error en tiempo de ejecucion
-        // a diferencia de las excepciones chequeadas que no son ignoradas por el compilador y te obligan a ponerlas en un bloque
-        // try catch
 
         try {
-            // Puede generar un NumberFormatException
-            int divisor = Integer.parseInt(valor);
-            // Puede generar un ArithmeticException
-            int division = 10/divisor;
-            System.out.println(division);
-
-        // Se atrapan las excepciones en el orden en el que pueden aparecer para tener un orden
-        } catch (NumberFormatException e){
-            System.out.println("Se detecto una excepcion: Ingrese un numero de formato valido");
-            main(args);
-        } catch (ArithmeticException e){
-            System.out.println("Se detecto una excepcion: No se puede dividir por cero");
-            main(args);
+            double division = cal.dividir(numerador, denominador);
+            System.out.println("division = " + division);
+        } catch (FormatoNumeroException e){
+            System.out.println("Se detecto una excepcion:  "+ e.getMessage());
+            e.printStackTrace(System.out);
+        } catch (DivisionPorZeroException e){
+            System.out.println("Se detecto una excepcion:  "+ e.getMessage());
+            e.printStackTrace(System.out);
         }
+
 
         System.out.println("Continuamos con el flujo del programa a pesar de los errores");
 
