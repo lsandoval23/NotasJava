@@ -1,6 +1,9 @@
 package org.lsandoval.poointerfaces.repositorio;
 
 import org.lsandoval.poointerfaces.modelo.BaseEntity;
+import org.lsandoval.poointerfaces.repositorio.excepciones.EscrituraAccesoDatoException;
+import org.lsandoval.poointerfaces.repositorio.excepciones.LecturaAccesoDatoException;
+import org.lsandoval.poointerfaces.repositorio.excepciones.RegistroDuplicadoAccesoDatoException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +36,13 @@ public abstract class AbstractaListRepositorio<T extends BaseEntity> implements 
     // Que el parametro generico extienda a la clase BaseEntity permite que el parametro generico T tenga los getters y
     // setters de id
     @Override
-    public T porId(Integer id) {
+    public T porId(Integer id) throws LecturaAccesoDatoException {
+
+        // Implementamos la rutina que lanza una excepcion si el id es null o invalido
+        if (id == null || id <= 0){
+            throw new LecturaAccesoDatoException("Id invalido debe ser > 0");
+        }
+
         T resultado = null;
         for (T t: datasource){
             if (t.getId() != null && t.getId().equals(id)){
@@ -42,17 +51,32 @@ public abstract class AbstractaListRepositorio<T extends BaseEntity> implements 
             }
         }
 
+        if(resultado == null){
+            throw new LecturaAccesoDatoException("No existe el registro con id: " + id);
+        }
+
+
         return resultado;
     }
 
     @Override
-    public void crear(T object) {
+    public void crear(T object) throws  EscrituraAccesoDatoException{
+        // Creamos las rutinas para lanzar excepciones antes valores nulos o registros duplicados
+        if (object == null){
+            throw new EscrituraAccesoDatoException("Error al insertar objeto null");
+        }
+
+        if (this.datasource.contains(object)){
+            throw new RegistroDuplicadoAccesoDatoException("Error con el objeto con id: " + object.getId() +
+                    " ya existe en el repositorio");
+
+        }
         this.datasource.add(object);
     }
 
 
     @Override
-    public void eliminar(Integer id) {
+    public void eliminar(Integer id) throws LecturaAccesoDatoException{
         this.datasource.remove(this.porId(id));
     }
 

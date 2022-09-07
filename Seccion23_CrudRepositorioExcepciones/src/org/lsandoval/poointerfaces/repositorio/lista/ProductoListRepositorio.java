@@ -3,6 +3,7 @@ package org.lsandoval.poointerfaces.repositorio.lista;
 import org.lsandoval.poointerfaces.modelo.Producto;
 import org.lsandoval.poointerfaces.repositorio.AbstractaListRepositorio;
 import org.lsandoval.poointerfaces.repositorio.Direccion;
+import org.lsandoval.poointerfaces.repositorio.excepciones.LecturaAccesoDatoException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class ProductoListRepositorio extends AbstractaListRepositorio<Producto> {
 
     @Override
-    public void editar(Producto producto) {
+    public void editar(Producto producto) throws LecturaAccesoDatoException {
         Producto p = this.porId(producto.getId());
         p.setDescripcion(producto.getDescripcion());
         p.setPrecio(producto.getPrecio());
