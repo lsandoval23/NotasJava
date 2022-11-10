@@ -21,7 +21,7 @@ public class EjemploHashSetAgregar {
         System.out.println(hs);
 
         // Se pueden generar listas a partir de otros tipos de colecciones, las listas si
-        // se pueden ordenar, a diferencia de los hashset
+        // se pueden ordenar, a diferencia de los hashset que no tienen orden en sus elementos
         System.out.println("======== Listas a partir de hashset =======");
         List<String> list = new ArrayList<>(hs);
         Collections.sort(list);
