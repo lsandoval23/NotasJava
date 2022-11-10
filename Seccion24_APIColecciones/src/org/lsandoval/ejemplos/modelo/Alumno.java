@@ -62,4 +62,18 @@ public class Alumno implements Comparable<Alumno>{
 
     }
 
+    // Sobreescribimos los metodos equals y hashcode para que el hashset use como criterio de comparación los atributos
+    // nombre y nota
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Alumno alumno = (Alumno) o;
+        return Objects.equals(nombre, alumno.nombre) && Objects.equals(nota, alumno.nota);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, nota);
+    }
 }
