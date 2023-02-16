@@ -5,6 +5,7 @@ import org.lsandoval.anotaciones.ejemplo.procesador.exception.JsonSerializadorEx
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class JsonSerializador {
 
@@ -27,6 +28,28 @@ public class JsonSerializador {
                                 String nombre = f.getAnnotation(JsonAtributo.class).nombre().equals("") ? f.getName() : f.getAnnotation(JsonAtributo.class).nombre();
 
                                 try {
+
+                                    // Agregamos la rutina de capitalizacion
+
+                                    // Obtenemos el valor del atributo
+                                    Object valor = f.get(object);
+
+                                    // Verificamos si el atributo tiene el metodo capitalizar y si es string
+                                    if (f.getAnnotation(JsonAtributo.class).capitalizar() && valor instanceof String){
+
+                                        String nuevoValor = (String) valor;
+
+                                        // split devuelve un array de String, a cada elemento de ese stream,
+                                        // convertimos la primera letra en mayuscula y el resto en minuscula
+                                        nuevoValor = Arrays.stream(nuevoValor.split(" "))
+                                                            .map(palabra -> palabra.substring(0,1).toUpperCase() + palabra.substring(1).toLowerCase())
+                                                            .collect(Collectors.joining(" "));
+
+                                        // Seteamos el nuevo valor del atributo al objeto
+                                        f.set(object, nuevoValor);
+                                    }
+
+
                                     // damos formato "nombre:valor", el metodo get del api reflection obtiene el valor del atributo pasando el objeto que examinemos
                                     return "\"" + nombre + "\": \"" + f.get(object) + "\"";
                                 } catch (IllegalAccessException e) {

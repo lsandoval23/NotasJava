@@ -10,4 +10,5 @@ import java.lang.annotation.*;
 // @Inherited (Si la anotacion va sobre una clase, esta se extiende a las clases hijas)
 public @interface JsonAtributo {
     String nombre() default "";
+    boolean capitalizar() default false;
 }

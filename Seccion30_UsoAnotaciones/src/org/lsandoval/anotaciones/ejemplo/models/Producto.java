@@ -7,10 +7,10 @@ import java.time.LocalDate;
 public class Producto {
 
     // Los atributos marcados con la anotacion son los que se pasaran en el json de la clase producto.
-    @JsonAtributo
+    @JsonAtributo(capitalizar = true)
     private String nombre;
 
-    @JsonAtributo
+    @JsonAtributo(nombre = "costo")
     private Long precio;
 
     @JsonAtributo
