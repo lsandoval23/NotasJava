@@ -1,8 +1,11 @@
 package org.lsandoval.anotaciones.ejemplo.models;
 
+import org.lsandoval.anotaciones.ejemplo.Init;
 import org.lsandoval.anotaciones.ejemplo.JsonAtributo;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Producto {
 
@@ -16,7 +19,12 @@ public class Producto {
     @JsonAtributo
     private LocalDate fecha;
 
-
+    @Init
+    private void init(){
+        this.nombre = Arrays.stream(nombre.split(" "))
+                            .map(palabra -> palabra.substring(0,1).toUpperCase() + palabra.substring(1).toLowerCase())
+                            .collect(Collectors.joining(" "));
+    }
 
 
     public String getNombre() {

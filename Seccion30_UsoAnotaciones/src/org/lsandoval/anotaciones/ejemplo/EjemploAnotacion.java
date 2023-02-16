@@ -12,7 +12,7 @@ public class EjemploAnotacion {
     public static void main(String[] args) throws IllegalAccessException {
         
         Producto p = new Producto();
-        p.setNombre("mesa centro roble");
+        p.setNombre("MESA CENTRO ROBLE");
         p.setFecha(LocalDate.now());
         p.setPrecio(1000L);
 
