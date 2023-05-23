@@ -1,19 +1,16 @@
 package org.lsandoval;
 
+import org.lsandoval.util.ConexionBaseDatos;
+
 import java.sql.*;
 
 public class EjemploJdbc {
     public static void main(String[] args) {
 
-        String url = "jdbc:mysql://localhost:3306/java_curso?serverTimezone=America/Lima";
-        String username = "root";
-        String password = "PasLtex4mysql";
-
-
         // Usamos un bloque try con uso de recursos para asegurarnos de que las conexiones a la base de datos
         // se cierren así ocurran excepciones en el transcurso de la ejecucion
 
-        try (Connection conn = DriverManager.getConnection(url, username, password);
+        try (Connection conn = ConexionBaseDatos.getInstance();
              Statement stmt = conn.createStatement();
              ResultSet result = stmt.executeQuery("SELECT * FROM productos")) {
 
