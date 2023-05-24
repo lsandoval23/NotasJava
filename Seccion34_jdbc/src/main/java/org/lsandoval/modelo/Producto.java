@@ -49,4 +49,15 @@ public class Producto {
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Producto{");
+        sb.append("id=").append(id);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", precio=").append(precio);
+        sb.append(", fechaRegistro=").append(fechaRegistro);
+        sb.append('}');
+        return sb.toString();
+    }
 }
