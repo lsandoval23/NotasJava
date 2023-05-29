@@ -7,6 +7,7 @@ public class Producto {
     private String nombre;
     private Integer precio;
     private Date fechaRegistro;
+    private Categoria categoria;
 
     public Producto() {
     }
@@ -50,6 +51,14 @@ public class Producto {
         this.fechaRegistro = fechaRegistro;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Producto{");
@@ -57,6 +66,7 @@ public class Producto {
         sb.append(", nombre='").append(nombre).append('\'');
         sb.append(", precio=").append(precio);
         sb.append(", fechaRegistro=").append(fechaRegistro);
+        sb.append(", categoria=").append(categoria);
         sb.append('}');
         return sb.toString();
     }
